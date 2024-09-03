@@ -4,6 +4,8 @@ import './Member.scss';
 import receiptImage from "../../assets/receipt.png";
 
 const Member = () => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [receipt, setReceipt] = useState('');
@@ -24,7 +26,12 @@ const Member = () => {
       return;
     }
 
-    const data = { phone, email, receipt };
+    if (!termsAccepted || !rodoAccepted) {
+      alert('Musisz potwierdzić swój wiek, zaakceptować regulamin i klauzulę informacyjną.');
+      return;
+    }
+
+    const data = { first_name: firstName, last_name: lastName, phone, email, receipt };
 
     try {
       await axios.post('http://localhost:8000/api/members/create/', data, {
@@ -33,6 +40,8 @@ const Member = () => {
         },
       });
       alert('Dołączenie do loterii zakończonie sukcesem. Powodzenia!');
+      setFirstName('');
+      setLastName('');
       setPhone('');
       setEmail('');
       setReceipt('');
@@ -48,6 +57,28 @@ const Member = () => {
       <div className="container">
         <h2 className="title">Weź udział</h2>
         <form onSubmit={handleSubmit}>
+        <div className="row">
+            <input
+              type="text"
+              id="firstName"
+              className="form-control"
+              placeholder="Imię"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="row">
+            <input
+              type="text"
+              id="lastName"
+              className="form-control"
+              placeholder="Nazwisko"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            />
+          </div>
           <div className="row">
             <input
               type="text"
@@ -91,7 +122,7 @@ const Member = () => {
               required
             />
             <label htmlFor="terms">
-              Zapoznałem/am się z <b>Regulaminem</b> i akceptuję wszystkie zawarte w nim warunki.
+              Oświadczam, że jestem osobą <b>pełnoletnią i mam ukończone 18 lat</b>.
             </label>
           </div>
           <div className="checkbox-row">
@@ -103,7 +134,7 @@ const Member = () => {
               required
             />
             <label htmlFor="rodo">
-              Wyrażam zgodę na <b>przetwarzanie swoich danych osobowych</b>.
+              Zapoznałam/-em się z regulaminem loterii <b>„LOTERII ŚWIĄTECZNEJ MI-STORE”</b> wraz z zawartą w nim klauzulą informacyjną dotyczącą przetwarzania danych osobowych i akceptuję jego wszystkie postanowienia.
             </label>
           </div>
           <button type="submit" className="btn btn-primary">Wyślij</button>
@@ -118,7 +149,6 @@ const Member = () => {
           </div>
         </div>
       )}
-
     </section>
   );
 };

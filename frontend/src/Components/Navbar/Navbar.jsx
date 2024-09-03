@@ -5,6 +5,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './Navbar.scss';
 import { Link } from "react-scroll";
 import { FaFacebookF, FaInstagram, FaTiktok, FaShoppingCart } from 'react-icons/fa';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 const Navbar = () => {
   return (
@@ -47,10 +48,30 @@ const Navbar = () => {
           </li>
         </ul>
         <div className="social-icons ms-auto">
-          <a href="https://mi-store.pl/" aria-label="Shopping Cart" target='_blank'><FaShoppingCart /></a>
-          <a href="https://www.facebook.com/mistorepolska/" aria-label="Facebook" target='_blank'><FaFacebookF /></a>
-          <a href="https://www.instagram.com/mistorepl/" aria-label="Instagram" target='_blank'><FaInstagram /></a>
-          <a href="https://www.tiktok.com/@mistorepl" aria-label="TikTok" target='_blank'><FaTiktok /></a>
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="tooltip-bottom">Odwiedź Mi-store</Tooltip>}
+          >
+            <a href="https://mi-store.pl/" aria-label="Shopping Cart" target='_blank'><FaShoppingCart /></a>
+          </OverlayTrigger>
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="tooltip-bottom">Odwiedź naszego Facebooka</Tooltip>}
+          >
+            <a href="https://www.facebook.com/mistorepolska/" aria-label="Facebook" target='_blank'><FaFacebookF /></a>
+          </OverlayTrigger>
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="tooltip-bottom">Odwiedź naszego Instagrama</Tooltip>}
+          >
+            <a href="https://www.instagram.com/mistorepl/" aria-label="Instagram" target='_blank'><FaInstagram /></a>
+          </OverlayTrigger>
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="tooltip-bottom">Odwiedź naszego Tiktoka</Tooltip>}
+          >
+            <a href="https://www.tiktok.com/@mistorepl" aria-label="TikTok" target='_blank'><FaTiktok /></a>
+          </OverlayTrigger>
         </div>
       </div>
     </nav>

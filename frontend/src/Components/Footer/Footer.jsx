@@ -12,14 +12,14 @@ const Footer = () => {
             <span>Copyright &copy; Mi-store 2024</span>
           </div>
           <div className="footer-right">
+            <a href="https://mi-store.pl/" target='_blank' aria-label="Shop">
+                <FaShoppingCart size={24} />
+            </a>
             <a href="https://www.instagram.com/mistorepl/" target='_blank' aria-label="Instagram">
                 <FaInstagram size={24} />
             </a>
             <a href="https://www.facebook.com/mistorepolska/" target='_blank' aria-label="Facebook">
                 <FaFacebook size={24} />
-            </a>
-            <a href="https://mi-store.pl/" target='_blank' aria-label="Shop">
-                <FaShoppingCart size={24} />
             </a>
             <a href="https://www.tiktok.com/@mistorepl" target='_blank' aria-label="Tik Tok">
                 <FaTiktok size={24} />
